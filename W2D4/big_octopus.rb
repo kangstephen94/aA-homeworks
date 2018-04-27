@@ -12,7 +12,9 @@ def quadratic_biggest_fish(fishes)
 
 end
 
+# n log n search
 class Array
+  #this should look familiar
   def merge_sort(&prc)
     prc ||= Proc.new { |x, y| x <=> y }
 
@@ -48,16 +50,20 @@ class Array
 end
 
 def nlogn_biggest_fish(fishes)
+  # sort the array longest to shortest
   prc = Proc.new { |x, y| y.length <=> x.length }
+  #return the first element
   fishes.merge_sort(&prc)[0]
 end
 
+# linear search
 def linear_biggest_fish(fishes)
-
-  biggest_fish = fishes[0]
+  #hold the biggest fish
+  biggest_fish = fishes.first
 
   fishes.each do |fish|
     if fish.length > biggest_fish.length
+      #update the biggest fish
       biggest_fish = fish
     end
   end
@@ -66,12 +72,17 @@ def linear_biggest_fish(fishes)
 
 end
 
+# linear octopus dance
+# tiles_array = ["up", "right-up", "right", "right-down", "down", "left-down", "left",  "left-up" ]
+
 def slow_dance(direction, tiles_array)
   tiles_array.each_with_index do |tile, index|
     return index if tile == direction
   end
 end
 
+# constant octopus dance
+#use a hash for constant lookup
 tiles_hash = {
     "up" => 0,
     "right-up" => 1,
